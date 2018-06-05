@@ -17,7 +17,7 @@ class BaseController extends Controller{
         return Response::json(['status'=>$status, 'msg'=> $msg, 'data' => $data]);
     }
 
-    protected function retError($status=403, $msg = '')
+    protected function retError($status=403, $msg = '操作失败!')
     {
         return new JsonResponse($msg, $status);
     }

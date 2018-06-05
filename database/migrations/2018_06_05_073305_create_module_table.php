@@ -13,7 +13,7 @@ class CreateModuleTable extends Migration
      */
     public function up()
     {
-        Schema::create('modules', function (Blueprint $table) {
+        Schema::create('api_modules', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 255)->comment('模块名称');
             $table->integer('parent_id')->comment('父级ID');
@@ -29,6 +29,6 @@ class CreateModuleTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('modules');
+        Schema::dropIfExists('api_modules');
     }
 }

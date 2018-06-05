@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en" class="app">
+<head>  
+  <meta charset="utf-8" />
+  <title>Musik | Web Application</title>
+  <meta name="description" content="app, web app, responsive, admin dashboard, admin, flat, flat ui, ui kit, off screen nav" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <link rel="stylesheet" href="js/jPlayer/jplayer.flat.css" type="text/css" />
+  <link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+  <link rel="stylesheet" href="css/animate.css" type="text/css" />
+  <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" />
+  <link rel="stylesheet" href="css/simple-line-icons.css" type="text/css" />
+  <link rel="stylesheet" href="css/font.css" type="text/css" />
+  <link rel="stylesheet" href="css/app.css" type="text/css" />  
+    <!--[if lt IE 9]>
+    <script src="js/ie/html5shiv.js"></script>
+    <script src="js/ie/respond.min.js"></script>
+    <script src="js/ie/excanvas.js"></script>
+  <![endif]-->
+</head>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<body class="" >
+  <section class="vbox" id="task_body">
+    <header class="bg-white-only header header-md navbar navbar-fixed-top-xs">
+      <div class="navbar-header aside bg-info nav-xs">
+        <a class="btn btn-link visible-xs" data-toggle="class:nav-off-screen,open" data-target="#nav,html">
+          <i class="icon-list"></i>
+        </a>
+        <a href="index.html" class="navbar-brand text-lt">
+          <i class="icon-earphones"></i>
+          <img src="images/logo.png" alt="." class="hide">
+          <span class="hidden-nav-xs m-l-sm">Musik</span>
+        </a>
+        <a class="btn btn-link visible-xs" data-toggle="dropdown" data-target=".user">
+          <i class="icon-settings"></i>
+        </a>
+      </div>      <ul class="nav navbar-nav hidden-xs">
+        <li>
+          <a href="#nav,.navbar-header" data-toggle="class:nav-xs,nav-xs" class="text-muted">
+            <i class="fa fa-indent text"></i>
+            <i class="fa fa-dedent text-active"></i>
+          </a>
+        </li>
+      </ul>
+      <form class="navbar-form navbar-left input-s-lg m-t m-l-n-xs hidden-xs" role="search">
+        <div class="form-group">
+          <div class="input-group">
+            <span class="input-group-btn">
+              <button type="submit" class="btn btn-sm bg-white btn-icon rounded"><i class="fa fa-search"></i></button>
+            </span>
+            <input type="text" class="form-control input-sm no-border rounded" placeholder="Search songs, albums...">
+          </div>
+        </div>
+      </form>
+      <div class="navbar-right ">
+        <ul class="nav navbar-nav m-n hidden-xs nav-user user">
+          <li class="hidden-xs">
+            <a href="#" class="dropdown-toggle lt" data-toggle="dropdown">
+              <i class="icon-bell"></i>
+              <span class="badge badge-sm up bg-danger count">2</span>
+            </a>
+            <section class="dropdown-menu aside-xl animated fadeInUp">
+              <section class="panel bg-white">
+                <div class="panel-heading b-light bg-light">
+                  <strong>You have <span class="count">2</span> notifications</strong>
+                </div>
+                <div class="list-group list-group-alt">
+                  <a href="#" class="media list-group-item">
+                    <span class="pull-left thumb-sm">
+                      <img src="images/a0.png" alt="..." class="img-circle">
+                    </span>
+                    <span class="media-body block m-b-none">
+                      Use awesome animate.css<br>
+                      <small class="text-muted">10 minutes ago</small>
+                    </span>
+                  </a>
+                  <a href="#" class="media list-group-item">
+                    <span class="media-body block m-b-none">
+                      1.0 initial released<br>
+                      <small class="text-muted">1 hour ago</small>
+                    </span>
+                  </a>
+                </div>
+                <div class="panel-footer text-sm">
+                  <a href="#" class="pull-right"><i class="fa fa-cog"></i></a>
+                  <a href="#notes" data-toggle="class:show animated fadeInRight">See all the notifications</a>
+                </div>
+              </section>
+            </section>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle bg clear" data-toggle="dropdown">
+              <span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm">
+                <img src="images/a0.png" alt="...">
+              </span>
+              John.Smith <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu animated fadeInRight">            
+              <li>
+                <span class="arrow top"></span>
+                <a href="#">Settings</a>
+              </li>
+              <li>
+                <a href="profile.html">Profile</a>
+              </li>
+              <li>
+                <a href="#">
+                  <span class="badge bg-danger pull-right">3</span>
+                  Notifications
+                </a>
+              </li>
+              <li>
+                <a href="docs.html">Help</a>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <a href="modal.lockme.html" data-toggle="ajaxModal" >Logout</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>      
+    </header>
+    <section>
+      <section class="hbox stretch">
+        <!-- .aside -->
+        <aside class="bg-black dk nav-xs aside hidden-print" id="nav">          
+          <section class="vbox">
+            <section class="w-f-md scrollable">
+              <div class="slim-scroll" data-height="auto" data-disable-fade-out="true" data-distance="0" data-size="10px" data-railOpacity="0.2">
+                
+                <!-- nav -->                 
+                <nav class="nav-primary hidden-xs">
+                  <ul class="nav bg clearfix">
+                    <li class="hidden-nav-xs padder m-t m-b-sm text-xs text-muted">
+                      Discover
+                    </li>
+                    <li>
+                      <a href="#" @click="menuChange(1)">
+                        <i class="icon-disc icon text-success"></i>
+                        <span class="font-bold">项目管理</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" @click="menuChange(2)">
+                        <i class="icon-music-tone-alt icon text-info"></i>
+                        <span class="font-bold">模块管理</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" @click="menuChange(3)">
+                        <i class="icon-drawer icon text-primary-lter"></i>
+                        <b class="badge bg-primary pull-right">6</b>
+                        <span class="font-bold">任务管理</span>
+                      </a>
+                    </li>
+                    <li class="m-b hidden-nav-xs"></li>
+                  </ul>
+                  
+                </nav>
+                <!-- / nav -->
+              </div>
+            </section>
+            
+            <footer class="footer hidden-xs no-padder text-center-nav-xs">
+              <div class="bg hidden-xs ">
+                  <div class="dropdown dropup wrapper-sm clearfix">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                      <span class="thumb-sm avatar pull-left m-l-xs">                        
+                        <img src="images/a3.png" class="dker" alt="...">
+                        <i class="on b-black"></i>
+                      </span>
+                      <span class="hidden-nav-xs clear">
+                        <span class="block m-l">
+                          <strong class="font-bold text-lt">John.Smith</strong> 
+                          <b class="caret"></b>
+                        </span>
+                        <span class="text-muted text-xs block m-l">Art Director</span>
+                      </span>
+                    </a>
+                    <ul class="dropdown-menu animated fadeInRight aside text-left">                      
+                      <li>
+                        <span class="arrow bottom hidden-nav-xs"></span>
+                        <a href="#">Settings</a>
+                      </li>
+                      <li>
+                        <a href="profile.html">Profile</a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <span class="badge bg-danger pull-right">3</span>
+                          Notifications
+                        </a>
+                      </li>
+                      <li>
+                        <a href="docs.html">Help</a>
+                      </li>
+                      <li class="divider"></li>
+                      <li>
+                        <a href="modal.lockme.html" data-toggle="ajaxModal" >Logout</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>            
+              </footer>
+          </section>
+        </aside>
+        <!-- /.aside -->
+        <section id="content">
+          <section class="hbox stretch">
+            <section>
+              <section class="vbox">
+                <section class="scrollable w-f-md" id="bjax-target">
+                  
+                  <!-- 陈 版面 start -->
+                    <div class="col-lg-7">
+                      <!-- 展示区 -->
+                      <section class="panel panel-default">
+                        <header class="panel-heading">
+                          <span class="label bg-danger pull-right m-t-xs">4 left</span>
+                          Tasks
+                        </header>
+                        <table class="table table-striped m-b-none">
+                          <thead>
+                            <tr>
+                              <th v-for="title in tableData.title">{{title.name}}</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr v-for="(tr, index) in tableData.body">
+                              <td v-for="tt in tableData.title">
+                                <template v-if="tt.type=='progress'">
+                                  <div class="progress progress-xs m-t-xs m-b-none">
+                                    <div class="progress-bar" :class="progressColorClass[index%4]" data-toggle="tooltip" :style="{width:tr[tt.key]+'%'}"></div>
+                                  </div>
+                                </template>
+                                <template v-if="tt.type=='text'">
+                                  {{tr[tt.key]}}
+                                </template>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <footer class="panel-footer">
+                          <div class="row">
+                            <div class="col-sm-4 hidden-xs">
+                              <select class="input-sm form-control input-s-sm inline v-middle">
+                                <option value="0">Bulk action</option>
+                                <option value="1">Delete selected</option>
+                                <option value="2">Bulk edit</option>
+                                <option value="3">Export</option>
+                              </select>
+                              <button class="btn btn-sm btn-default">Apply</button>                  
+                            </div>
+                            <div class="col-sm-4 text-center">
+                              <small class="text-muted inline m-t-sm m-b-sm">showing 20-30 of 50 items</small>
+                            </div>
+                            <div class="col-sm-4 text-right text-center-xs">                
+                              <ul class="pagination pagination-sm m-t-none m-b-none">
+                                <li><a href="#"><i class="fa fa-chevron-left"></i></a></li>
+                                <li><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">5</a></li>
+                                <li><a href="#"><i class="fa fa-chevron-right"></i></a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </footer>
+                      </section>
+                      <!-- 展示区 -->
+                    </div>
+                    <div class="col-lg-5">
+                      <!-- 右侧 -->
+                      <div>操作区</div>
+                      <div>
+                      <!-- 编辑区 -->
+                        <form id="wizardform" method="get" action="index.html">
+                          <div class="panel panel-default">
+                            <div class="panel-heading">
+                              <ul class="nav nav-tabs font-bold">
+                                <li class="active"><a href="#step1" data-toggle="tab">主体信息</a></li>
+                                <li><a href="#step2" data-toggle="tab">时间信息</a></li>
+                                <li><a href="#step3" data-toggle="tab">Step 3</a></li>
+                              </ul>
+                            </div>
+                            <div class="panel-body">
+                              <div class="progress progress-xs m-t-md">
+                                <div class="progress-bar bg-success" style="width: 33.3333%;"></div>
+                              </div>
+                              <div class="tab-content">
+                                <div class="tab-pane active" id="step1">                            
+                                  <p>项目名称：</p>
+                                  <input type="text" class="form-control" data-trigger="change" data-required="true"  placeholder="名称" v-model="projectForm.name">
+                                  <p class="m-t">负责人：</p>
+                                  <input type="text" class="form-control" data-trigger="change" data-required="true" placeholder="真实姓名" v-model="projectForm.people">
+                                </div>
+                                <div class="tab-pane" id="step2">
+                                  <p>计划开始时间：</p>
+                                  <input type="text" class="form-control" data-trigger="change" data-required="true" data-type="date" placeholder="" v-model="projectForm.planStartTime">
+                                  <p class="m-t">计划完成时间：</p>
+                                  <input type="text" class="form-control" data-trigger="change" data-required="true" data-type="date" placeholder="" v-model="projectForm.planEndTime">
+                                </div>
+                                <div class="tab-pane" id="step3">This is step 3</div>
+                                <ul class="pager wizard m-b-sm">
+                                  <li class="previous first disabled" style="display:none;"><a href="#">First</a></li>
+                                  <li class="previous disabled"><a href="#">返回</a></li>
+                                  <li class="next last" style="display:none;"><a href="#">Last</a></li>
+                                  <li class="next"><a href="#">下一步</a></li>
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                      <!-- 编辑区 -->
+                      </div>
+                      <div>
+                        <!-- 提交区 -->
+                        <button class="btn btn-sm btn-default" @click="saveProjectForm">保存项目</button>
+                        <!-- 提交区 -->
+                      </div>
+
+                    </div>
+                  <!-- 陈 版面   end -->
+                  
+                </section>
+                <footer class="footer bg-dark">
+                  <div id="jp_container_N">
+                    <div class="jp-type-playlist">
+                      <div id="jplayer_N" class="jp-jplayer hide"></div>
+                      <div class="jp-gui">
+                        <div class="jp-video-play hide">
+                          <a class="jp-video-play-icon">play</a>
+                        </div>
+                        <div class="jp-interface">
+                          <div class="jp-controls">
+                            <div><a class="jp-previous"><i class="icon-control-rewind i-lg"></i></a></div>
+                            <div>
+                              <a class="jp-play"><i class="icon-control-play i-2x"></i></a>
+                              <a class="jp-pause hid"><i class="icon-control-pause i-2x"></i></a>
+                            </div>
+                            <div><a class="jp-next"><i class="icon-control-forward i-lg"></i></a></div>
+                            <div class="hide"><a class="jp-stop"><i class="fa fa-stop"></i></a></div>
+                            <div><a class="" data-toggle="dropdown" data-target="#playlist"><i class="icon-list"></i></a></div>
+                            <div class="jp-progress hidden-xs">
+                              <div class="jp-seek-bar dk">
+                                <div class="jp-play-bar bg-info">
+                                </div>
+                                <div class="jp-title text-lt">
+                                  <ul>
+                                    <li></li>
+                                  </ul>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="hidden-xs hidden-sm jp-current-time text-xs text-muted"></div>
+                            <div class="hidden-xs hidden-sm jp-duration text-xs text-muted"></div>
+                            <div class="hidden-xs hidden-sm">
+                              <a class="jp-mute" title="mute"><i class="icon-volume-2"></i></a>
+                              <a class="jp-unmute hid" title="unmute"><i class="icon-volume-off"></i></a>
+                            </div>
+                            <div class="hidden-xs hidden-sm jp-volume">
+                              <div class="jp-volume-bar dk">
+                                <div class="jp-volume-bar-value lter"></div>
+                              </div>
+                            </div>
+                            <div>
+                              <a class="jp-shuffle" title="shuffle"><i class="icon-shuffle text-muted"></i></a>
+                              <a class="jp-shuffle-off hid" title="shuffle off"><i class="icon-shuffle text-lt"></i></a>
+                            </div>
+                            <div>
+                              <a class="jp-repeat" title="repeat"><i class="icon-loop text-muted"></i></a>
+                              <a class="jp-repeat-off hid" title="repeat off"><i class="icon-loop text-lt"></i></a>
+                            </div>
+                            <div class="hide">
+                              <a class="jp-full-screen" title="full screen"><i class="fa fa-expand"></i></a>
+                              <a class="jp-restore-screen" title="restore screen"><i class="fa fa-compress text-lt"></i></a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="jp-playlist dropup" id="playlist">
+                        <ul class="dropdown-menu aside-xl dker">
+                          <!-- The method Playlist.displayPlaylist() uses this unordered list -->
+                          <li class="list-group-item"></li>
+                        </ul>
+                      </div>
+                      <div class="jp-no-solution hide">
+                        <span>Update Required</span>
+                        To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+                      </div>
+                    </div>
+                  </div>
+                </footer>
+              </section>
+            </section>
+            <!-- side content -->
+            <aside class="aside-md bg-light dk" id="sidebar">
+              <section class="vbox animated fadeInRight">
+                <section class="w-f-md scrollable hover">
+                  <h4 class="font-thin m-l-md m-t">Connected</h4>
+                  <ul class="list-group no-bg no-borders auto m-t-n-xxs">
+                    <li class="list-group-item">
+                      <span class="pull-left thumb-xs m-t-xs avatar m-l-xs m-r-sm">
+                        <img src="images/a1.png" alt="..." class="img-circle">
+                        <i class="on b-light right sm"></i>
+                      </span>
+                      <div class="clear">
+                        <div><a href="#">Chris Fox</a></div>
+                        <small class="text-muted">New York</small>
+                      </div>
+                    </li>
+                    <li class="list-group-item">
+                      <span class="pull-left thumb-xs m-t-xs avatar m-l-xs m-r-sm">
+                        <img src="images/a2.png" alt="...">
+                        <i class="on b-light right sm"></i>
+                      </span>
+                      <div class="clear">
+                        <div><a href="#">Amanda Conlan</a></div>
+                        <small class="text-muted">France</small>
+                      </div>
+                    </li>
+                    <li class="list-group-item">
+                      <span class="pull-left thumb-xs m-t-xs avatar m-l-xs m-r-sm">
+                        <img src="images/a3.png" alt="...">
+                        <i class="busy b-light right sm"></i>
+                      </span>
+                      <div class="clear">
+                        <div><a href="#">Dan Doorack</a></div>
+                        <small class="text-muted">Hamburg</small>
+                      </div>
+                    </li>
+                    <li class="list-group-item">
+                      <span class="pull-left thumb-xs m-t-xs avatar m-l-xs m-r-sm">
+                        <img src="images/a4.png" alt="...">
+                        <i class="away b-light right sm"></i>
+                      </span>
+                      <div class="clear">
+                        <div><a href="#">Lauren Taylor</a></div>
+                        <small class="text-muted">London</small>
+                      </div>
+                    </li>
+                    <li class="list-group-item">
+                      <span class="pull-left thumb-xs m-t-xs avatar m-l-xs m-r-sm">
+                        <img src="images/a5.png" alt="..." class="img-circle">
+                        <i class="on b-light right sm"></i>
+                      </span>
+                      <div class="clear">
+                        <div><a href="#">Chris Fox</a></div>
+                        <small class="text-muted">Milan</small>
+                      </div>
+                    </li>
+                    <li class="list-group-item">
+                      <span class="pull-left thumb-xs m-t-xs avatar m-l-xs m-r-sm">
+                        <img src="images/a6.png" alt="...">
+                        <i class="on b-light right sm"></i>
+                      </span>
+                      <div class="clear">
+                        <div><a href="#">Amanda Conlan</a></div>
+                        <small class="text-muted">Copenhagen</small>
+                      </div>
+                    </li>
+                    <li class="list-group-item">
+                      <span class="pull-left thumb-xs m-t-xs avatar m-l-xs m-r-sm">
+                        <img src="images/a7.png" alt="...">
+                        <i class="busy b-light right sm"></i>
+                      </span>
+                      <div class="clear">
+                        <div><a href="#">Dan Doorack</a></div>
+                        <small class="text-muted">Barcelona</small>
+                      </div>
+                    </li>
+                    
+                  </ul>
+                </section>
+                <footer class="footer footer-md bg-black">
+                  <form class="" role="search">
+                    <div class="form-group clearfix m-b-none">
+                      <div class="input-group m-t m-b">
+                        <span class="input-group-btn">
+                          <button type="submit" class="btn btn-sm bg-empty text-muted btn-icon"><i class="fa fa-search"></i></button>
+                        </span>
+                        <input type="text" class="form-control input-sm text-white bg-empty b-b b-dark no-border" placeholder="Search members">
+                      </div>
+                    </div>
+                  </form>
+                </footer>
+              </section>              
+            </aside>
+            <!-- / side content -->
+          </section>
+          <a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen,open" data-target="#nav,html"></a>
+        </section>
+      </section>
+    </section>    
+  </section>
+  <script src="js/jquery.min.js"></script>
+  <!-- Bootstrap -->
+  <script src="js/bootstrap.js"></script>
+  <!-- App -->
+  <script src="js/app.js"></script>  
+  <script src="js/slimscroll/jquery.slimscroll.min.js"></script>
+  <script src="js/parsley/parsley.min.js"></script>
+  <script src="js/wizard/jquery.bootstrap.wizard.js"></script>
+  <script src="js/wizard/demo.js"></script>
+
+  <script src="js/app.plugin.js"></script>
+  <script type="text/javascript" src="js/jPlayer/jquery.jplayer.min.js"></script>
+  <script type="text/javascript" src="js/jPlayer/add-on/jplayer.playlist.min.js"></script>
+  <script type="text/javascript" src="js/jPlayer/demo.js"></script>
+
+
+
+
+</body>
+
+
+<script>
+
+
+  var App = new Vue({
+    el:'#task_body',
+    data:{
+
+      progressColorClass:['bg-success', 'bg-info', 'bg-warning', 'bg-danger'],
+      tableData:{
+        title:[{name:'标题1', key:'content', type:'progress'}, {name:'标题2', key:'key', type:'text'}],
+        body:[{content:50, key:'8888'}, {content:50, key:'8888'}, {content:50, key:'8888'}]
+      },
+
+      projectForm:{name:'', people:'', planStartTime:'', planEndTime:''},
+    },
+    methods:{
+        menuChange:function(panel){
+
+        },
+        saveProjectForm:function(){
+          console.log(this.projectForm);
+        }
+    }
+  });
+</script>
+
+</html>

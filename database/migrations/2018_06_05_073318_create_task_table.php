@@ -13,7 +13,7 @@ class CreateTaskTable extends Migration
      */
     public function up()
     {
-        Schema::create('tasks', function (Blueprint $table) {
+        Schema::create('api_tasks', function (Blueprint $table) {
             $table->increments('id');
             $table->string('content', 1024)->comment('任务内容');
             $table->integer('status')->default(1)->comment('任务状态{1任务创建, 2进行中, 3已完成, 4已废弃, 5已延期, 6冻结 }');
@@ -43,6 +43,6 @@ class CreateTaskTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tasks');
+        Schema::dropIfExists('api_tasks');
     }
 }

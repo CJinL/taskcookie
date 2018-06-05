@@ -13,14 +13,14 @@ class CreateProjectTable extends Migration
      */
     public function up()
     {
-        Schema::create('projects', function (Blueprint $table) {
+        Schema::create('api_projects', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 255)->comment('项目名称')->unique();
             $table->string('people', 50)->comment('负责人');
-            $table->date('plan_start_time')->comment('计划开始时间');
-            $table->date('plan_end_time')->comment('计划结束时间');
-            $table->date('real_start_time')->comment('实际开始时间');
-            $table->date('real_end_time')->comment('实际结束时间');
+            $table->date('plan_start_time')->nullable()->comment('计划开始时间');
+            $table->date('plan_end_time')->nullable()->comment('计划结束时间');
+            $table->date('real_start_time')->nullable()->comment('实际开始时间');
+            $table->date('real_end_time')->nullable()->comment('实际结束时间');
             $table->timestamps();
         });
     }
@@ -32,6 +32,6 @@ class CreateProjectTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('projects');
+        Schema::dropIfExists('api_projects');
     }
 }
