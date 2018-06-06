@@ -9,14 +9,15 @@ class ProjectController extends BaseController
 {
     //
     public function lists(){
-        ProjectService::listAll();
+        $data = ProjectService::listAll();
+        return $this->success($data);
     }
 
     public function create(Request $request){
         $id = ProjectService::post($request->all());
         if($this->isId($id)){
-            $this->success($id);
+            return $this->success($id);
         }
-        $this->retError();
+        return $this->retError();
     }
 }

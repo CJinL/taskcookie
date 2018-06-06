@@ -271,12 +271,13 @@
                       </section>
                       <!-- 展示区 -->
                     </div>
-                    <div class="col-lg-5">
+
+                    <div class="col-lg-5" v-show="panel==1">
                       <!-- 右侧 -->
                       <div>操作区</div>
                       <div>
                       <!-- 编辑区 -->
-                        <form id="wizardform" method="get" action="index.html">
+                        <form class="wizardform" method="get">
                           <div class="panel panel-default">
                             <div class="panel-heading">
                               <ul class="nav nav-tabs font-bold">
@@ -322,6 +323,117 @@
                       </div>
 
                     </div>
+
+                    <div class="col-lg-5" v-show="panel==2">
+                    <!-- 右侧 -->
+                    <div>操作区</div>
+                    <div>
+                      <!-- 编辑区 -->
+                      <form class="wizardform" method="get">
+                        <div class="panel panel-default">
+                          <div class="panel-heading">
+                            <ul class="nav nav-tabs font-bold">
+                              <li class="active"><a href="#step4" data-toggle="tab">主体信息</a></li>
+                              <li><a href="#step5" data-toggle="tab">时间信息</a></li>
+                              <li><a href="#step6" data-toggle="tab">Step 3</a></li>
+                            </ul>
+                          </div>
+                          <div class="panel-body">
+                            <div class="progress progress-xs m-t-md">
+                              <div class="progress-bar bg-success" style="width: 33.3333%;"></div>
+                            </div>
+                            <div class="tab-content">
+                              <div class="tab-pane active" id="step4">
+                                <p>所属项目：</p>
+                                <select v-model="moduleForm.project_id" class="form-control" data-required="true">
+                                    <option v-for="projectItem in selectsOfProject" :value="projectItem.id">{{projectItem.name}}</option>
+                                </select>
+                                <p class="m-t">上级模块：</p>
+                                <select v-model="moduleForm.module_id" class="form-control" data-required="true">
+                                  <option v-for="moduleItem in selectsOfModule" :value="moduleItem.id">{{moduleItem.name}}</option>
+                                </select>
+                                <p class="m-t">模块名称：</p>
+                                <input type="text" class="form-control" data-trigger="change" data-required="true" placeholder="模块名称" v-model="moduleForm.name">
+                              </div>
+                              <ul class="pager wizard m-b-sm">
+                                <li class="previous first disabled" style="display:none;"><a href="#">First</a></li>
+                                <li class="previous disabled"><a href="#">返回</a></li>
+                                <li class="next last" style="display:none;"><a href="#">Last</a></li>
+                                <li class="next"><a href="#">下一步</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </form>
+                      <!-- 编辑区 -->
+                    </div>
+                    <div>
+                      <!-- 提交区 -->
+                      <button class="btn btn-sm btn-default" @click="saveModuleForm">保存项目</button>
+                      <!-- 提交区 -->
+                    </div>
+
+                  </div>
+
+                    <div class="col-lg-5" v-show="panel==3">
+                    <!-- 右侧 -->
+                    <div>操作区</div>
+                    <div>
+                      <!-- 编辑区 -->
+                      <form class="wizardform" method="get">
+                        <div class="panel panel-default">
+                          <div class="panel-heading">
+                            <ul class="nav nav-tabs font-bold">
+                              <li class="active"><a href="#step7" data-toggle="tab">主体信息</a></li>
+                              <li><a href="#step8" data-toggle="tab">时间信息</a></li>
+                              <li><a href="#step9" data-toggle="tab">Step 9</a></li>
+                            </ul>
+                          </div>
+                          <div class="panel-body">
+                            <div class="progress progress-xs m-t-md">
+                              <div class="progress-bar bg-success" style="width: 33.3333%;"></div>
+                            </div>
+                            <div class="tab-content">
+                              <div class="tab-pane active" id="step7">
+                                <p>所属项目：</p>
+                                <select v-model="taskForm.project_id" class="form-control" data-required="true">
+                                  <option v-for="projectItem in selectsOfProject" :value="projectItem.id">{{projectItem.name}}</option>
+                                </select>
+                                <p class="m-t">上级模块：</p>
+                                <select v-model="taskForm.module_id" class="form-control" data-required="true">
+                                  <option v-for="moduleItem in selectsOfModule" :value="moduleItem.id">{{moduleItem.name}}</option>
+                                </select>
+                                <p class="m-t">任务名称：</p>
+                                <input type="text" class="form-control" data-trigger="change" data-required="true"  placeholder="任务名称" v-model="taskForm.content">
+                                <p class="m-t">负责人：</p>
+                                <input type="text" class="form-control" data-trigger="change" data-required="true" placeholder="真实姓名" v-model="taskForm.todo_user">
+                              </div>
+                              <div class="tab-pane" id="step8">
+                                <p>计划开始时间：</p>
+                                <input type="text" class="form-control" data-trigger="change" data-required="true" data-type="date" placeholder="" v-model="taskForm.planStartTime">
+                                <p class="m-t">计划完成时间：</p>
+                                <input type="text" class="form-control" data-trigger="change" data-required="true" data-type="date" placeholder="" v-model="taskForm.planEndTime">
+                              </div>
+                              <div class="tab-pane" id="step9">This is step 3</div>
+                              <ul class="pager wizard m-b-sm">
+                                <li class="previous first disabled" style="display:none;"><a href="#">First</a></li>
+                                <li class="previous disabled"><a href="#">返回</a></li>
+                                <li class="next last" style="display:none;"><a href="#">Last</a></li>
+                                <li class="next"><a href="#">下一步</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </form>
+                      <!-- 编辑区 -->
+                    </div>
+                    <div>
+                      <!-- 提交区 -->
+                      <button class="btn btn-sm btn-default" @click="saveTaskForm">保存项目</button>
+                      <!-- 提交区 -->
+                    </div>
+
+                  </div>
                   <!-- 陈 版面   end -->
                   
                 </section>
@@ -523,21 +635,70 @@
     el:'#task_body',
     data:{
 
-      progressColorClass:['bg-success', 'bg-info', 'bg-warning', 'bg-danger'],
-      tableData:{
-        title:[{name:'标题1', key:'content', type:'progress'}, {name:'标题2', key:'key', type:'text'}],
-        body:[{content:50, key:'8888'}, {content:50, key:'8888'}, {content:50, key:'8888'}]
-      },
+        panel:1,
 
-      projectForm:{name:'', people:'', planStartTime:'', planEndTime:''},
+        progressColorClass:['bg-success', 'bg-info', 'bg-warning', 'bg-danger'],
+        tableData:{
+            title:[{name:'标题1', key:'content', type:'progress'}, {name:'标题2', key:'key', type:'text'}],
+            body:[{content:50, key:'8888'}, {content:50, key:'8888'}, {content:50, key:'8888'}]
+        },
+
+        projectForm:{id:'', name:'', people:'', planStartTime:'', planEndTime:''},
+        moduleForm:{id:'', name:'', module_id:'', project_id:''},
+        taskForm:{id:'', content:'', module_id:'', project_id:'', planStartTime:'', planEndTime:''},
+
+        selectsOfProject:[],
+        selectsOfModule:[],
     },
     methods:{
         menuChange:function(panel){
+            if(panel == 1){
+                this.listOfProject();
+            }
+            if(panel == 2){
+                this.listOfModule();
+            }
+            if(panel == 3){
+                this.listOfTask();
+            }
 
+            this.panel = panel;
         },
         saveProjectForm:function(){
-          console.log(this.projectForm);
-        }
+            $.get('http://127.0.0.1:8001/api/task/project_create', this.projectForm, function(resp){
+                alert(resp.msg)
+            });
+        },
+        listOfProject:function () {
+            $.get('http://127.0.0.1:8001/api/task/project_list', {}, function(resp){
+                App.tableData = resp.data;
+                App.selectsOfProject = resp.data.body;
+            });
+        },
+
+
+        saveModuleForm:function(){
+            $.get('http://127.0.0.1:8001/api/task/module_create', this.moduleForm, function(resp){
+                alert(resp.msg)
+            });
+        },
+        listOfModule:function () {
+            $.get('http://127.0.0.1:8001/api/task/module_list', {}, function(resp){
+                App.tableData = resp.data;
+                App.selectsOfModule = resp.data.body;
+            });
+        },
+
+        saveTaskForm:function(){
+            $.get('http://127.0.0.1:8001/api/task/task_create', this.taskForm, function(resp){
+                alert(resp.msg)
+            });
+        },
+        listOfTask:function () {
+            $.get('http://127.0.0.1:8001/api/task/task_list', {}, function(resp){
+                App.tableData = resp.data;
+            });
+        },
     }
   });
 </script>

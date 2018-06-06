@@ -21,4 +21,10 @@ Route::get('/user', function (Request $request) {
 Route::group(['prefix'=>'task', 'namespace'=>'Api'], function () {
     Route::get('project_list', 'ProjectController@lists');
     Route::get('project_create', 'ProjectController@create');
+
+    Route::get('module_list', 'ModuleController@lists');
+    Route::get('module_create', 'ModuleController@create');
+
+    Route::get('task_list', 'TaskController@lists');
+    Route::get('task_create', 'TaskController@create');
 });

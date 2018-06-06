@@ -16,7 +16,7 @@ class CreateModuleTable extends Migration
         Schema::create('api_modules', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 255)->comment('模块名称');
-            $table->integer('parent_id')->comment('父级ID');
+            $table->integer('module_id')->defalut(0)->comment('父级ID');
             $table->integer('project_id')->comment('所属项目ID');
             $table->timestamps();
         });

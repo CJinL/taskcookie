@@ -2,7 +2,7 @@
 
   $(function(){
 
-    $('#wizardform').bootstrapWizard({
+    $('.wizardform').bootstrapWizard({
       'tabClass': 'nav nav-tabs',
       'onNext': function(tab, navigation, index) {
         var valid = false;
@@ -18,7 +18,7 @@
         var $total = navigation.find('li').length;
         var $current = index+1;
         var $percent = ($current/$total) * 100;
-        $('#wizardform').find('.progress-bar').css({width:$percent+'%'});
+        $(this).find('.progress-bar').css({width:$percent+'%'});
       }
     });
 

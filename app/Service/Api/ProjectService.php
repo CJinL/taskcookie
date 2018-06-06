@@ -14,8 +14,8 @@ use App\Models\TaskCookie\Project;
 class ProjectService
 {
     public static function post($params){
-        if(isset($params['id'])){
-            $model = new Project();
+        if(!empty($params['id'])){
+            $model = Project::find($params['id']);
             $model->name = $params['name'];
             $model->people = $params['people'];
             if($model->save()){
@@ -26,11 +26,33 @@ class ProjectService
                 'name'=>$params['name'],
                 'people'=>$params['people'],
             ]);
-            return $model->id;
+            if(!empty($model)){
+                return $model->id;
+            }
         }
     }
 
+
+    /**
+     *
+     * tableData:{
+     * title:[{name:'标题1', key:'content', type:'progress'}, {name:'标题2', key:'key', type:'text'}],
+     * body:[{content:50, key:'8888'}, {content:50, key:'8888'}, {content:50, key:'8888'}]
+     * },
+     *
+     * @return array
+     */
     public static function listAll(){
-        return Project::paginate();
+        $array = [
+            'title' => [
+                ['name' => 'ID', 'key' => 'id', 'type' => 'text'],
+                ['name' => '项目名称', 'key' => 'name', 'type' => 'text'],
+                ['name' => '负责人', 'key' => 'people', 'type' => 'text'],
+            ],
+            'body' => []
+        ];
+        $data = Project::all();
+        $array['body'] = $data;
+        return $array;
     }
 }

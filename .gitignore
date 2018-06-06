@@ -13,3 +13,4 @@ _ide_helper_models.php
 .phpstorm.meta.php
 composer.lock
 /public/.metadata
+/public/node_modules
